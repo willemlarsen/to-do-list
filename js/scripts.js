@@ -12,25 +12,26 @@ addHomeTask = function(task) {
     return Home.taskList[listLength - 1];
 };
 
+var listName;
+
 var titleToDoListSelection = function() {
-    var listName = Home.name;
+    listName = Home.name;
     $('#domain').text(listName);
 };
 
 $(document).ready(function() {
   event.preventDefault();
 
-
   titleToDoListSelection();
   
-  // listName.forEach(task) {
-  //   $('ul#tasks').append('<li>' + task + '</li>' );
-  // }
+  addNewTaskToSelectedList();
+  $('form#add-new-task').submit(function(event) {
+    var inputtedTask = $('input.task-description').val();
 
-  $('form#new-task').submit(function(event) {
-    inputtedTask = $('input#new-task').val();
     Home.taskList.push(inputtedTask);
+    
+    $('.tasks').append('<li>' + inputtedTask + '</li>');
 
-    $('ul#tasks').append('<li>' + inputtedTask + '</li>');
+    
   });
 });
